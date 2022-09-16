@@ -1,0 +1,36 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set_style('whitegrid')
+
+dataset=pd.read_csv('multisat.csv')
+
+dataset
+
+x1 = dataset[['SAT','Rand 1,2,3']]
+
+x1
+
+y = dataset['GPA']
+
+import statsmodels.api as sm
+
+x = sm.add_constant(x1)
+
+x
+
+model=sm.OLS(y,x).fit()
+
+model.summary()
+
+test = pd.DataFrame([[1900,2],[1600,1]],columns=['SAT','Rand 1,2,3'])
+
+test
+
+test = sm.add_constant(test)
+
+test
+
+model.predict(test)
+
